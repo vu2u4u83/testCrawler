@@ -25,7 +25,7 @@ public class Crawler {
         try {
 
             //網址
-            String url = "https://www.imdb.com/chart/top/";
+            String url = "https://www.imdb.com/chart/top/?ref_=nv_mv_250";
 
             long startTime = new Date().getTime();
 
@@ -43,8 +43,9 @@ public class Crawler {
 
             //使用 jsoup 做頁面的處理
             Document doc = Jsoup.parse(content);
-            Elements td = doc.select("tr > td > a[href]");
-            System.out.println(td.text());
+            Elements tr = doc.select("tr");
+            System.out.println("取得總長度：" + tr.text().length());
+            System.out.println("取得行數：" + tr.size());
 
             long endTime = new Date().getTime();
             System.out.println("處理結束 : " + this.processDate(new Date(endTime - startTime)));
