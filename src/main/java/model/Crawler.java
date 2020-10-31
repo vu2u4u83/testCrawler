@@ -48,6 +48,7 @@ public class Crawler {
             System.out.println("取得行數：" + tr.size());
 
             long endTime = new Date().getTime();
+            System.out.println("處理的時間處理： " + this.processDate(new Date(endTime - getTime)));
             System.out.println("處理結束 : " + this.processDate(new Date(endTime - startTime)));
 
         } catch (IOException e) {
