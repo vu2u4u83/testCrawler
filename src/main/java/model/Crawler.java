@@ -44,12 +44,13 @@ public class Crawler {
             //使用 jsoup 做頁面的處理
             Document doc = Jsoup.parse(content);
             Elements tr = doc.select("tr");
+            System.out.println(tr);
             System.out.println("取得總長度：" + tr.text().length());
-            System.out.println("取得行數：" + tr.size());
+            System.out.println("取得行數：" + (tr.size() - 1));
 
             long endTime = new Date().getTime();
-            System.out.println("處理的時間處理： " + this.processDate(new Date(endTime - getTime)));
-            System.out.println("處理結束 : " + this.processDate(new Date(endTime - startTime)));
+            System.out.println("拆解的時間： " + this.processDate(new Date(endTime - getTime)));
+            System.out.println("總共耗時 : " + this.processDate(new Date(endTime - startTime)));
 
         } catch (IOException e) {
             e.printStackTrace();
