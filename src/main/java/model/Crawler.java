@@ -35,7 +35,6 @@ public class Crawler {
             response = httpclient.execute(get);
 
             long getTime = new Date().getTime();
-            System.out.println("得到回應 : " + this.processDate(new Date(getTime - startTime)));
 
             HttpEntity entity = response.getEntity();
 
@@ -44,13 +43,13 @@ public class Crawler {
             //使用 jsoup 做頁面的處理
             Document doc = Jsoup.parse(content);
             Elements tr = doc.select("tr");
-            System.out.println(tr);
-            System.out.println("取得總長度：" + tr.text().length());
-            System.out.println("取得行數：" + (tr.size() - 1));
 
             long endTime = new Date().getTime();
-            System.out.println("拆解的時間： " + this.processDate(new Date(endTime - getTime)));
-            System.out.println("總共耗時 : " + this.processDate(new Date(endTime - startTime)));
+
+            System.out.println(this.processDate(new Date(getTime - startTime)) + ","
+                                + this.processDate(new Date(endTime - getTime)) + ","
+                                + this.processDate(new Date(endTime - startTime)) + ","
+                                + this.parserDate(new Date(startTime)));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,6 +60,13 @@ public class Crawler {
     public String processDate(Date date){
 
         SimpleDateFormat format = new SimpleDateFormat("ss.SSS");
+
+        return format.format(date);
+    }
+
+    public String parserDate(Date date){
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         return format.format(date);
     }
