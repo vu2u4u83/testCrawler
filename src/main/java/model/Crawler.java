@@ -25,7 +25,7 @@ public class Crawler {
         try {
 
             //網址
-            String url = "https://www.imdb.com/chart/top/?ref_=nv_mv_250";
+            String url = "https://kma.kkbox.com/charts/yearly/newrelease?lang=tc&terr=tw";
 
             long startTime = new Date().getTime();
 
@@ -42,7 +42,7 @@ public class Crawler {
 
             //使用 jsoup 做頁面的處理
             Document doc = Jsoup.parse(content);
-            Elements tr = doc.select("tr");
+            Elements tr = doc.select(".charts-list-row");
 
             long endTime = new Date().getTime();
 
